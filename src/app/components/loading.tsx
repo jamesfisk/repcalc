@@ -48,81 +48,93 @@ const getLoads = (weight: number) => {
   
 function LoadingGuide(props: LoadingGuideProps) {
     const load = getLoads(props.weight)
-
-    const StyledTableCell = styled(TableCell)(({ theme }) => ({
-        [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white,
-        },
-        [`&.${tableCellClasses.body}`]: {
-        fontSize: 14,
-        },
-    }));
+    const baseStyles: SxProps = {
+        paddingTop: '16px',
+        paddingBottom: '16px',
+        minWidth: '25px'
+    }
     const redstyles: SxProps = load.twentyfives > 0 ? {
+        ...baseStyles,
         backgroundColor: '#d30000',
         color: 'white'
-    } : {};
+    } : baseStyles;
     const bluestyles: SxProps = load.twenties > 0 ? {
+        ...baseStyles,
         backgroundColor: '#000de7',
         color: 'white'
-    } : {};
+    } : baseStyles;
     const yellowstyles: SxProps = load.fifteens > 0 ? {
+        ...baseStyles,
         backgroundColor: '#f9dd00',
         color: 'black'
-    } : {};
+    } : baseStyles;
     const greenstyles: SxProps = load.tens > 0 ? {
+        ...baseStyles,
         backgroundColor: '#009300',
         opacity: '80%',
         color: 'white'
-    } : {};
+    } : baseStyles;
     const whitestyles: SxProps = load.fives > 0 ? {
+        ...baseStyles,
         backgroundColor: '#e6e0e0'
-    } : {};
+    } : baseStyles;
     const blackstyles: SxProps = load.twopointfives > 0 ? {
+        ...baseStyles,
         backgroundColor: 'black',
         opacity: '80%',
         color: 'white'
-    } : {};
+    } : baseStyles;
     const silverstyles: SxProps = load.onepointtwofives > 0 ? {
+        ...baseStyles,
         backgroundColor: '#b4baba',
         opacity: '80%',
         color: 'white'
-    } : {};
+    } : baseStyles;
+    const KG_TO_LBS = 2.20462262185;
     return(
         <div className="w-full flex flex-row justify-center">
-            <div className="py-3 w-full">
+            <div className="py-6 md:py-3 w-full">
                 <Box sx={{ width: '100%' }}>
                     <Paper sx={{ width: '100%', mb: 2 }}>
-                        <Typography
-                            sx={{ flex: '1 1 100%', pl:2, pt:2, pb:2 }}
-                            variant="h6"
-                            id="tableTitle"
-                            component="div"
-                                >
-                                Loading guide (kg)
-                        </Typography>
+                        <div className="flex flex-row justify-between">
+                            <Typography
+                                sx={{ flex: '1 1 100%', pl:2, pt:2, pb:2 }}
+                                variant="h6"
+                                id="tableTitle"
+                                component="div"
+                                    >
+                                    Loading guide (kg)
+                            </Typography>
+                            <Typography
+                                sx={{ pr:2, margin:'auto'}}
+                                id="lbs"
+                                component="div"
+                                    >
+                                    ({Math.round((props.weight * KG_TO_LBS) * 100)/100}lbs)
+                            </Typography>
+                        </div>
                         <TableContainer sx={{ width: '100%' }} >
                             <Table sx={{ width: '100%' }} aria-label="simple table">
                                 <TableHead>
                                 <TableRow>
-                                    <TableCell align="center" sx={redstyles}>25s</TableCell>
-                                    <TableCell align="center" sx={bluestyles}>20s</TableCell>
-                                    <TableCell align="center" sx={yellowstyles}>15s</TableCell>
-                                    <TableCell align="center" sx={greenstyles}>10s</TableCell>
-                                    <TableCell align="center" sx={whitestyles}>5s</TableCell>
-                                    <TableCell align="center" sx={blackstyles}>2.5s</TableCell>
-                                    <TableCell align="center" sx={silverstyles}>1.25s</TableCell>
+                                    <TableCell align="center" sx={redstyles} padding="none">25s</TableCell>
+                                    <TableCell align="center" sx={bluestyles} padding="none">20s</TableCell>
+                                    <TableCell align="center" sx={yellowstyles} padding="none">15s</TableCell>
+                                    <TableCell align="center" sx={greenstyles} padding="none">10s</TableCell>
+                                    <TableCell align="center" sx={whitestyles} padding="none">5s</TableCell>
+                                    <TableCell align="center" sx={blackstyles} padding="none">2.5s</TableCell>
+                                    <TableCell align="center" sx={silverstyles} padding="none">1.25s</TableCell>
                                 </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                    <TableCell align="center" sx={redstyles}>{load.twentyfives}</TableCell>
-                                    <TableCell align="center" sx={bluestyles}>{load.twenties}</TableCell>
-                                    <TableCell align="center" sx={yellowstyles}>{load.fifteens}</TableCell>
-                                    <TableCell align="center" sx={greenstyles}>{load.tens}</TableCell>
-                                    <TableCell align="center" sx={whitestyles}>{load.fives}</TableCell>
-                                    <TableCell align="center" sx={blackstyles}>{load.twopointfives}</TableCell>
-                                    <TableCell align="center" sx={silverstyles}>{load.onepointtwofives}</TableCell>
+                                        <TableCell align="center" sx={redstyles} padding="none">{load.twentyfives}</TableCell>
+                                        <TableCell align="center" sx={bluestyles} padding="none">{load.twenties}</TableCell>
+                                        <TableCell align="center" sx={yellowstyles} padding="none">{load.fifteens}</TableCell>
+                                        <TableCell align="center" sx={greenstyles} padding="none">{load.tens}</TableCell>
+                                        <TableCell align="center" sx={whitestyles} padding="none">{load.fives}</TableCell>
+                                        <TableCell align="center" sx={blackstyles} padding="none">{load.twopointfives}</TableCell>
+                                        <TableCell align="center" sx={silverstyles} padding="none">{load.onepointtwofives}</TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>

@@ -35,11 +35,11 @@ function Results(props: ResultsProps) {
         <div className="w-full md:w-1/2 lg:w-1/3 pt-3 md:pt-0">
             <div className="w-full">
               <div className="flex flex-col flex-wrap -mx-3 mb-6 py-4">
-                      <div className="flex flex-row justify-between py-4">
-                        <div className=" mb-6 md:mb-0 block text-gray-700 text-sm font-bold">
+                      <div className="flex flex-row justify-start py-4">
+                        <div className=" mb-6 mr-3 md:mb-0 block text-gray-700 text-sm font-bold">
                             Target<br/>Reps
                         </div>
-                          <Box sx={{ width: '80%' }}>
+                          <Box sx={{ width: '75%' }}>
                               <Slider
                                   aria-label="Always visible"
                                   defaultValue={defaultReps}
@@ -52,11 +52,11 @@ function Results(props: ResultsProps) {
                               />
                           </Box>
                       </div>
-                      <div className="flex flex-row justify-between py-4">
-                        <div className="mb-6 md:mb-0 block text-gray-700 text-sm font-bold">
+                      <div className="flex flex-row justify-start py-4">
+                        <div className="mb-6 mr-3 md:mb-0 block text-gray-700 text-sm font-bold">
                             Target<br/>RPE
                         </div>
-                          <Box sx={{ width: '80%' }}>
+                          <Box sx={{ width: '75%' }}>
                               <Slider
                                   aria-label="Always visible"
                                   defaultValue={defaultRpe}
@@ -71,8 +71,8 @@ function Results(props: ResultsProps) {
                       </div>
               </div>
               <div className="flex flex-row w-full justify-between">
-                  <p className="text-center text-lg font-bold">Target weight: {doCompute()}</p>
-                  <p className="text-center">Your 1RM is {rounded(props.onerm)}</p>
+                  <p className="text-center text-xl font-bold mt-auto">Target weight: {doCompute()}</p>
+                  <p className="text-center mt-auto">Est. 1RM {rounded(props.onerm)}</p>
               </div>
             </div>
             <LoadingGuide weight={doCompute()} iskg={true}/>
