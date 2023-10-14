@@ -6,7 +6,7 @@ import Results from "./results";
 export default function Calculator() {
     const [weight, setWeight] = useState<number | undefined>(undefined);
     const [reps, setReps] = useState(1)
-    const [rpe, setRpe] = useState(6.5)
+    const [rpe, setRpe] = useState(6)
     const [onerm, setOneRm] = useState<number | undefined>(undefined)
 
     const updateWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +55,7 @@ export default function Calculator() {
     }
 
     const buttonClasses = weight === undefined
-        ? "bg-blue-500 text-white font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed"
+        ? "bg-blue-500 text-white font-bold py-2 px-4 rounded opacity-50 dark:opacity-70 cursor-not-allowed"
         : "bg-blue-500 text-white font-bold py-2 px-4 rounded"
     const buttonAlt = weight === undefined
         ? "Please enter your last set's weight"
@@ -64,14 +64,14 @@ export default function Calculator() {
     return(
         <div data-testid="calc" className="w-full flex flex-col justify-center md:flex-row md:justify-around align-top pt-24 sm:pt-36 px-6 md:px-0">
             <div className="flex flex-col w-full md:w-1/3">
-                <label className="block text-gray-700 text-sm font-bold mb-2" >
+                <label className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" >
                     Current Weight
                 </label>
                 <input id="weight" type="number" value={weight || ''} onChange={updateWeight} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></input>
                 
                 <div className="flex flex-wrap -mx-3 mb-6">
                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" >
+                        <label className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" >
                             Current Reps
                         </label>
                         <select id="reps" onChange={updateReps} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
@@ -80,7 +80,7 @@ export default function Calculator() {
                     </div>
 
                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" >
+                        <label className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" >
                             Current RPE
                         </label>
                         <select id="rpe" onChange={updateRpe} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">

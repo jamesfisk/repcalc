@@ -28,20 +28,20 @@ const getLoads = (weight: number) => {
         twopointfives: 0,
         onepointtwofives: 0 
     }
-    loads.twentyfives = Math.floor(weight / 50) * 2
-    weight -= loads.twentyfives * 25
-    loads.twenties =  Math.floor(weight / 40) * 2
-    weight -= loads.twenties * 15
-    loads.fifteens =  Math.floor(weight / 30) * 2
-    weight -= loads.fifteens * 15
-    loads.tens =  Math.floor(weight / 20) * 2
-    weight -= loads.tens * 10
-    loads.fives =  Math.floor(weight / 10) * 2
-    weight -= loads.fives * 5
-    loads.twopointfives =  Math.floor(weight / 5) * 2
-    weight -= loads.twopointfives * 2.5
-    loads.onepointtwofives =  Math.floor(weight / 2.5) * 2
-    weight -= loads.onepointtwofives * 1.25
+    loads.twentyfives = Math.floor(weight / 50)
+    weight -= loads.twentyfives * 50
+    loads.twenties =  Math.floor(weight / 40)
+    weight -= loads.twenties * 40
+    loads.fifteens =  Math.floor(weight / 30)
+    weight -= loads.fifteens * 30
+    loads.tens =  Math.floor(weight / 20)
+    weight -= loads.tens * 20
+    loads.fives =  Math.floor(weight / 10)
+    weight -= loads.fives * 10
+    loads.twopointfives =  Math.floor(weight / 5)
+    weight -= loads.twopointfives * 5
+    loads.onepointtwofives =  Math.floor(weight / 2.5)
+    weight -= loads.onepointtwofives * 2.5
 
     return loads
 }
