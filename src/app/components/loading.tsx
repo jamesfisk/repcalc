@@ -9,13 +9,14 @@ import Paper from '@mui/material/Paper';
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { SxProps, styled } from "@mui/material/styles";
+import Switch from "@mui/material/Switch";
 
 export interface LoadingGuideProps {
     weight: number,
     iskg: boolean
 }
 
-const getLoads = (weight: number) => {
+const getKgLoads = (weight: number) => {
     // Bar
     weight -= 20
 
@@ -45,25 +46,57 @@ const getLoads = (weight: number) => {
 
     return loads
 }
+
+const getLbsLoads = (weight: number) => {
+    // Bar
+    weight -= 45
+
+    let loads = {
+        fortyfives: 0,
+        thirtyfives: 0,
+        twentyfives: 0,
+        tens: 0,
+        fives: 0,
+        twopointfives: 0,
+        onepointtwofives: 0 
+    }
+    loads.fortyfives = Math.floor(weight / 90)
+    weight -= loads.fortyfives * 90
+    loads.thirtyfives =  Math.floor(weight / 70)
+    weight -= loads.thirtyfives * 70
+    loads.twentyfives =  Math.floor(weight / 50)
+    weight -= loads.twentyfives * 50
+    loads.tens =  Math.floor(weight / 20)
+    weight -= loads.tens * 20
+    loads.fives =  Math.floor(weight / 10)
+    weight -= loads.fives * 10
+    loads.twopointfives =  Math.floor(weight / 5)
+    weight -= loads.twopointfives * 5
+    loads.onepointtwofives =  Math.floor(weight / 2.5)
+    weight -= loads.onepointtwofives * 2.5
+
+    return loads
+}
   
 function LoadingGuide(props: LoadingGuideProps) {
-    const load = getLoads(props.weight)
+    const [iskg, togglekg] = useState(true)
+    const load: any = iskg ? getKgLoads(props.weight) : getLbsLoads(props.weight);
     const baseStyles: SxProps = {
         paddingTop: '16px',
         paddingBottom: '16px',
         minWidth: '25px'
     }
-    const redstyles: SxProps = load.twentyfives > 0 ? {
+    const redstyles: SxProps = (iskg && load.twentyfives > 0) || (!iskg && load.fortyfives > 0) ? {
         ...baseStyles,
         backgroundColor: '#d30000',
         color: 'white'
     } : baseStyles;
-    const bluestyles: SxProps = load.twenties > 0 ? {
+    const bluestyles: SxProps = (iskg && load.twenties > 0) || (!iskg && load.thirtyfives > 0) ? {
         ...baseStyles,
         backgroundColor: '#000de7',
         color: 'white'
     } : baseStyles;
-    const yellowstyles: SxProps = load.fifteens > 0 ? {
+    const yellowstyles: SxProps = (iskg && load.fifteens > 0) || (!iskg && load.twentyfives > 0) ? {
         ...baseStyles,
         backgroundColor: '#f9dd00',
         color: 'black'
@@ -91,6 +124,13 @@ function LoadingGuide(props: LoadingGuideProps) {
         color: 'white'
     } : baseStyles;
     const KG_TO_LBS = 2.20462262185;
+    const LBS_TO_KG = 0.45359237;
+    const switchkg = () =>{
+        togglekg((prev) => !prev)
+    }
+    const loadtext = iskg ?
+        `${props.weight}kg (${Math.round((props.weight * KG_TO_LBS) * 100)/100}lbs)` :
+        `${props.weight}lbs (${Math.round((props.weight * LBS_TO_KG) * 100)/100}kg)`
     return(
         <div className="w-full flex flex-row justify-center">
             <div className="py-6 md:py-3 w-full">
@@ -103,23 +143,29 @@ function LoadingGuide(props: LoadingGuideProps) {
                                 id="tableTitle"
                                 component="div"
                                     >
-                                    Loading guide (kg)
+                                    {loadtext}
                             </Typography>
                             <Typography
-                                sx={{ pr:2, margin:'auto'}}
+                                sx={{ pr:2, margin:'auto', minWidth: '120px'}}
                                 id="lbs"
                                 component="div"
                                     >
-                                    ({Math.round((props.weight * KG_TO_LBS) * 100)/100}lbs)
+                                    lbs
+                                    <Switch
+                                        checked={iskg}
+                                        onChange={switchkg}
+                                        inputProps={{ 'aria-label': 'controlled' }}
+                                        />
+                                    kg
                             </Typography>
                         </div>
                         <TableContainer sx={{ width: '100%' }} >
                             <Table sx={{ width: '100%' }} aria-label="simple table">
                                 <TableHead>
                                 <TableRow>
-                                    <TableCell align="center" sx={redstyles} padding="none">25s</TableCell>
-                                    <TableCell align="center" sx={bluestyles} padding="none">20s</TableCell>
-                                    <TableCell align="center" sx={yellowstyles} padding="none">15s</TableCell>
+                                    <TableCell align="center" sx={redstyles} padding="none">{iskg ? '25s' : '45s'}</TableCell>
+                                    <TableCell align="center" sx={bluestyles} padding="none">{iskg ? '20s' : '35s'}</TableCell>
+                                    <TableCell align="center" sx={yellowstyles} padding="none">{iskg ? '15s' : '25s'}</TableCell>
                                     <TableCell align="center" sx={greenstyles} padding="none">10s</TableCell>
                                     <TableCell align="center" sx={whitestyles} padding="none">5s</TableCell>
                                     <TableCell align="center" sx={blackstyles} padding="none">2.5s</TableCell>
@@ -128,9 +174,9 @@ function LoadingGuide(props: LoadingGuideProps) {
                                 </TableHead>
                                 <TableBody>
                                     <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                        <TableCell align="center" sx={redstyles} padding="none">{load.twentyfives}</TableCell>
-                                        <TableCell align="center" sx={bluestyles} padding="none">{load.twenties}</TableCell>
-                                        <TableCell align="center" sx={yellowstyles} padding="none">{load.fifteens}</TableCell>
+                                        <TableCell align="center" sx={redstyles} padding="none">{iskg ? load.twentyfives : load.fortyfives}</TableCell>
+                                        <TableCell align="center" sx={bluestyles} padding="none">{iskg ? load.twenties : load.thirtyfives}</TableCell>
+                                        <TableCell align="center" sx={yellowstyles} padding="none">{iskg ? load.fifteens : load.twentyfives}</TableCell>
                                         <TableCell align="center" sx={greenstyles} padding="none">{load.tens}</TableCell>
                                         <TableCell align="center" sx={whitestyles} padding="none">{load.fives}</TableCell>
                                         <TableCell align="center" sx={blackstyles} padding="none">{load.twopointfives}</TableCell>

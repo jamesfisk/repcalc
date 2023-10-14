@@ -38,7 +38,7 @@ export default function About() {
                     <br/>
                     <p>Input the weight, reps and RPE of your last completed set, hit calculate, then view the estimated weight for your target RPE and reps.</p>
                     <br/>
-                    <p>The loading guide shows the plates needed for the estimated load in kilograms. It assumes a 20kg bar but does not assume 2.5kg collars.</p>
+                    <p>The loading guide below shows the plates needed on each side for the estimated load in kg or lbs. It assumes a 20kg/45lbs bar but does not assume any weight from collars.</p>
                     <br/>
                     <p>Have a good lift!</p>
                     <div className='pt-3 text-xs w-full text-center'>Made with 💪 by <a className='text-blue-500 dark:text-blue-300' href="https://github.com/jamesfisk" target="_blank">james</a></div>

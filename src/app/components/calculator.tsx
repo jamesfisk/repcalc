@@ -4,7 +4,7 @@ import { rounded, rpe_lookup } from "./consts";
 import Results from "./results";
 
 export default function Calculator() {
-    const [weight, setWeight] = useState<number | undefined>(undefined);
+    const [weight, setWeight] = useState<number | undefined>(170);
     const [reps, setReps] = useState(1)
     const [rpe, setRpe] = useState(6)
     const [onerm, setOneRm] = useState<number | undefined>(undefined)
