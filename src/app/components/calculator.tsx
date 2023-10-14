@@ -67,7 +67,7 @@ export default function Calculator() {
                 <label className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" >
                     Current Weight
                 </label>
-                <input id="weight" type="number" value={weight || ''} onChange={updateWeight} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></input>
+                <input id="weight" type="number" inputMode="numeric" pattern="[0-9]*" value={weight || ''} onChange={updateWeight} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></input>
                 
                 <div className="flex flex-wrap -mx-3 mb-6">
                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
