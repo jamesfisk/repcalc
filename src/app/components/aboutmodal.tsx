@@ -40,8 +40,10 @@ export default function About() {
                     <br/>
                     <p>The loading guide below shows the plates needed on each side for the estimated load in kg or lbs. It assumes a 20kg/45lbs bar but does not assume any weight from collars.</p>
                     <br/>
-                    <p>Have a good lift!</p>
-                    <div className='pt-3 text-xs w-full text-center'>Made with 💪 by <a className='text-blue-500 dark:text-blue-300' href="https://github.com/jamesfisk" target="_blank">james</a></div>
+                    <p>Have feedback? <a className='text-blue-500 dark:text-blue-300'  target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdZgCf4Tu6y-5SvOfZkanyqr0pQj8M9u7-RpRiWFUvL4piTQA/viewform?usp=sf_link">Help us improve</a>!</p>
+                    <br/>
+                    <p>Have a good lift 🏋️‍♂️</p>
+                    <div className='pt-3 text-xs w-full text-center'>Made with 💪 by <a className='text-blue-500 dark:text-blue-300' href="https://www.jamesfisk.io" target="_blank">james</a></div>
                 </div>
             </Box>
         </Modal>
