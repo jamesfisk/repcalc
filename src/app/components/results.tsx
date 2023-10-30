@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { rounded, rpe_lookup } from "./consts"
 import * as marks from "./marks";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
 import LoadingGuide from "./loading";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 export interface ResultsProps {
     onerm: number,
@@ -16,6 +18,18 @@ function Results(props: ResultsProps) {
     const defaultRpe = props.rpe === 10 ? props.rpe : props.rpe + 1;
     const [targetReps, setTargetReps] = useState(defaultReps)
     const [targetRpe, setTargetRpe] = useState(defaultRpe)
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+    const theme = useMemo(
+      () =>
+        createTheme({
+          palette: {
+            mode: prefersDarkMode ? 'dark' : 'light',
+          },
+        }),
+      [prefersDarkMode],
+    );
+  
 
     const updateRpe = (e: Event, value: number | number[]) => {
         setTargetRpe(value as number)
@@ -39,23 +53,27 @@ function Results(props: ResultsProps) {
                         <div className=" mb-6 mr-3 md:mb-0 block text-gray-700 dark:text-gray-200 text-sm font-bold">
                             Target<br/>Reps
                         </div>
-                          <Box sx={{ width: '75%' }}>
-                              <Slider
-                                  aria-label="Always visible"
-                                  defaultValue={defaultReps}
-                                  step={null}
-                                  marks={marks.repmarks}
-                                  valueLabelDisplay="on"
-                                  onChange={updateReps}
-                                  min={1}
-                                  max={12}
-                              />
-                          </Box>
+                          <ThemeProvider theme={theme}>
+                              <Box sx={{ width: '75%' }}>
+                                  <Slider
+                                      aria-label="Always visible"
+                                      defaultValue={defaultReps}
+                                      step={null}
+                                      marks={marks.repmarks}
+                                      valueLabelDisplay="on"
+                                      onChange={updateReps}
+                                      min={1}
+                                      max={12}
+                                  />
+                              </Box>
+                          </ThemeProvider>
                       </div>
                       <div className="flex flex-row justify-start py-4">
                         <div className="mb-6 mr-3 md:mb-0 block text-gray-700 dark:text-gray-200 text-sm font-bold">
                             Target<br/>RPE
                         </div>
+
+                        <ThemeProvider theme={theme}>
                           <Box sx={{ width: '75%' }}>
                               <Slider
                                   aria-label="Always visible"
@@ -68,6 +86,7 @@ function Results(props: ResultsProps) {
                                   max={10}
                               />
                           </Box>
+                        </ThemeProvider>
                       </div>
               </div>
               <div className="flex flex-row w-full justify-between">

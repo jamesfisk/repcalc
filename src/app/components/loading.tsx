@@ -132,7 +132,7 @@ function LoadingGuide(props: LoadingGuideProps) {
         `${props.weight}kg (${Math.round((props.weight * KG_TO_LBS) * 100)/100}lbs)` :
         `${props.weight}lbs (${Math.round((props.weight * LBS_TO_KG) * 100)/100}kg)`
     return(
-        <div className="w-full flex flex-row justify-center">
+        <div className="w-full flex flex-col justify-center">
             <div className="py-6 md:py-3 w-full">
                 <Box sx={{ width: '100%' }}>
                     <Paper sx={{ width: '100%', mb: 2 }}>
