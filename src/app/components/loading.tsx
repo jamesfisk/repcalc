@@ -79,7 +79,7 @@ const getLbsLoads = (weight: number) => {
 }
   
 function LoadingGuide(props: LoadingGuideProps) {
-    const [iskg, togglekg] = useState(true)
+    const [iskg, togglekg] = useState(props.iskg)
     const load: any = iskg ? getKgLoads(props.weight) : getLbsLoads(props.weight);
     const baseStyles: SxProps = {
         paddingTop: '16px',

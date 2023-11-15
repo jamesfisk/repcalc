@@ -38,12 +38,11 @@ function Results(props: ResultsProps) {
         setTargetReps(value as number)
     }
 
-    const doCompute = () => {
-        const rpe = targetRpe
-        const reps = targetReps
-        const lookup = rpe_lookup
-        return rounded(lookup[reps][rpe] * props.onerm / 100)
-    }
+    const rpe = targetRpe
+    const reps = targetReps
+    const lookup = rpe_lookup
+    const weight = rounded(lookup[reps][rpe] * props.onerm / 100)
+    const loadDefaultKg = weight < 200;
 
     return (
         <div className="w-full md:w-1/2 lg:w-1/3 pt-3 md:pt-0">
@@ -90,11 +89,11 @@ function Results(props: ResultsProps) {
                       </div>
               </div>
               <div className="flex flex-row w-full justify-between">
-                  <p className="text-center text-xl font-bold mt-auto">Target weight: {doCompute()}</p>
+                  <p className="text-center text-xl font-bold mt-auto">Target weight: {weight}</p>
                   <p className="text-center mt-auto">Est. 1RM {rounded(props.onerm)}</p>
               </div>
             </div>
-            <LoadingGuide weight={doCompute()} iskg={true}/>
+            <LoadingGuide weight={weight} iskg={loadDefaultKg}/>
         </div>
     )
 }
