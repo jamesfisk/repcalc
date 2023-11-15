@@ -2,11 +2,24 @@
 import React, { ChangeEvent, useState, useTransition } from "react";
 import { rounded, rpe_lookup } from "./consts";
 import Results from "./results";
+import { getCurrentState, saveCurrentState } from "../util/helper";
 
 export default function Calculator() {
-    const [weight, setWeight] = useState<number | undefined>(undefined);
-    const [reps, setReps] = useState(1)
-    const [rpe, setRpe] = useState(6)
+    let defaultWeight = undefined;
+    let defaultReps = 1;
+    let defaultRpe = 6;
+
+    if(typeof window !== 'undefined'){
+        const save = getCurrentState();
+        if (save){
+            defaultWeight = save.weight;
+            defaultReps = save.reps;
+            defaultRpe = save.rpe;
+        }
+    }
+    const [weight, setWeight] = useState<number | undefined>(defaultWeight);
+    const [reps, setReps] = useState(defaultReps)
+    const [rpe, setRpe] = useState(defaultRpe)
     const [onerm, setOneRm] = useState<number | undefined>(undefined)
 
     const updateWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,17 +62,14 @@ export default function Calculator() {
         if (weight === undefined){
             return
         }
+        saveCurrentState({ weight: weight, reps: reps, rpe: rpe});
         setOneRm((prev) => {
             return weight / rpe_lookup[reps][rpe] *  100
         });
     }
 
-    const buttonClasses = weight === undefined
-        ? "bg-blue-700 text-white font-bold py-2 px-4 rounded opacity-50 dark:opacity-70 cursor-not-allowed"
-        : "bg-blue-700 text-white font-bold py-2 px-4 rounded"
-    const buttonAlt = weight === undefined
-        ? "Please enter your last set's weight"
-        : "Compute your 1RM"
+    const buttonClasses = "bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    const buttonAlt = "Compute your 1RM"
     
     return(
         <div data-testid="calc" className="w-full flex flex-col justify-center md:flex-row md:justify-around align-top pt-24 sm:pt-36 px-6 md:px-0">
