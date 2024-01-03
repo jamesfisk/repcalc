@@ -3,7 +3,7 @@ import { rounded, rpe_lookup } from "./consts"
 import * as marks from "./marks";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
-import LoadingGuide from "./loading";
+import LoadingGuide from "./loadingguide";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 

@@ -1,5 +1,5 @@
 'use client'
-import React, { ChangeEvent, useState, useTransition } from "react";
+import React, { ChangeEvent, useEffect, useState, useTransition } from "react";
 import { rounded, rpe_lookup } from "./consts";
 import Results from "./results";
 import { getCurrentState, saveCurrentState } from "../util/helper";
@@ -9,18 +9,19 @@ export default function Calculator() {
     let defaultReps = 1;
     let defaultRpe = 6;
 
-    if(typeof window !== 'undefined'){
-        const save = getCurrentState();
-        if (save){
-            defaultWeight = save.weight;
-            defaultReps = save.reps;
-            defaultRpe = save.rpe;
-        }
-    }
     const [weight, setWeight] = useState<number | undefined>(defaultWeight);
     const [reps, setReps] = useState(defaultReps)
     const [rpe, setRpe] = useState(defaultRpe)
     const [onerm, setOneRm] = useState<number | undefined>(undefined)
+    
+    useEffect(() => {
+        const save = getCurrentState();
+        if (save) {
+            setWeight(save.weight);
+            setReps(save.reps);
+            setRpe(save.rpe);
+        }
+    }, [])
 
     const updateWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (isNaN(Number.parseInt(e.target.value))){
@@ -42,7 +43,7 @@ export default function Calculator() {
         let selections = []
         for(let i = 1; i < 13; i++) {
             selections.push(
-                <option value={i} key={i}>{i}</option>
+                <option value={i} key={i} selected={i == reps}>{i}</option>
             )
         }
         return selections
@@ -52,7 +53,7 @@ export default function Calculator() {
         let selections = []
         for(let i = 6; i < 10.5; i = i + 0.5) {
             selections.push(
-                <option value={i} key={i}>{i}</option>
+                <option value={i} key={i} selected={i == rpe}>{i}</option>
             )
         }
         return selections
@@ -77,7 +78,7 @@ export default function Calculator() {
                 <label htmlFor="weight" className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" >
                     Current Weight
                 </label>
-                <input id="weight" type="number" inputMode="numeric" pattern="[0-9]*" value={weight || ''} onChange={updateWeight} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></input>
+                <input id="weight" type="number" inputMode="decimal" pattern="[0-9]+([,\.][0-9]+)?" value={weight || ''} onChange={updateWeight} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></input>
                 
                 <div className="flex flex-wrap -mx-3 mb-6">
                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
