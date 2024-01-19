@@ -24,16 +24,16 @@ export default function Calculator() {
     }, [])
 
     const updateWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (isNaN(Number.parseInt(e.target.value))){
+        if (isNaN(Number.parseFloat(e.target.value))){
             setWeight(undefined)
         }
         else {
-            setWeight(Number.parseInt(e.target.value))
+            setWeight(Number.parseFloat(e.target.value))
         }
     }
 
     const updateRpe = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setRpe(Number.parseInt(e.target.value))
+        setRpe(Number.parseFloat(e.target.value))
     }
     const updateReps = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setReps(Number.parseInt(e.target.value))
@@ -43,7 +43,7 @@ export default function Calculator() {
         let selections = []
         for(let i = 1; i < 13; i++) {
             selections.push(
-                <option value={i} key={i} selected={i == reps}>{i}</option>
+                <option value={i} key={i} defaultChecked={i == reps}>{i}</option>
             )
         }
         return selections
@@ -53,7 +53,7 @@ export default function Calculator() {
         let selections = []
         for(let i = 6; i < 10.5; i = i + 0.5) {
             selections.push(
-                <option value={i} key={i} selected={i == rpe}>{i}</option>
+                <option value={i} key={i} defaultChecked={i == rpe}>{i}</option>
             )
         }
         return selections
