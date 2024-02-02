@@ -13,7 +13,8 @@ import Switch from "@mui/material/Switch";
 
 export interface LoadingGuideProps {
     weight: number,
-    iskg: boolean
+    iskg: boolean,
+    showKgToggle: boolean
 }
 
 const getKgLoads = (weight: number) => {
@@ -128,6 +129,26 @@ function LoadingGuide(props: LoadingGuideProps) {
     const switchkg = () =>{
         togglekg((prev) => !prev)
     }
+    const renderKgToggle = () => {
+        if (!props.showKgToggle) {
+            return null
+        }
+        return (
+            <Typography
+                sx={{ pr:2, margin:'auto', minWidth: '120px'}}
+                id="lbs"
+                component="div"
+                    >
+                    lbs
+                    <Switch
+                        checked={iskg}
+                        onChange={switchkg}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                        />
+                    kg
+            </Typography>
+        )
+    }
     const loadtext = iskg ?
         `${props.weight}kg (${Math.round((props.weight * KG_TO_LBS) * 100)/100}lbs)` :
         `${props.weight}lbs (${Math.round((props.weight * LBS_TO_KG) * 100)/100}kg)`
@@ -145,19 +166,7 @@ function LoadingGuide(props: LoadingGuideProps) {
                                     >
                                     {loadtext}
                             </Typography>
-                            <Typography
-                                sx={{ pr:2, margin:'auto', minWidth: '120px'}}
-                                id="lbs"
-                                component="div"
-                                    >
-                                    lbs
-                                    <Switch
-                                        checked={iskg}
-                                        onChange={switchkg}
-                                        inputProps={{ 'aria-label': 'controlled' }}
-                                        />
-                                    kg
-                            </Typography>
+                            { renderKgToggle() }
                         </div>
                         <TableContainer sx={{ width: '100%' }} >
                             <Table sx={{ width: '100%' }} aria-label="simple table">
