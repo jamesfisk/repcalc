@@ -42,9 +42,15 @@ export default function Calculator() {
     const renderRepsSelections = () => {
         let selections = []
         for(let i = 1; i < 13; i++) {
-            selections.push(
-                <option value={i} key={i} defaultChecked={i == reps}>{i}</option>
-            )
+            if (i == reps) {
+                selections.push(
+                    <option value={i} key={i} selected>{i}</option>
+                )
+            } else {
+                selections.push(
+                    <option value={i} key={i}>{i}</option>
+                )
+            }
         }
         return selections
     }
@@ -52,9 +58,16 @@ export default function Calculator() {
     const renderRpeSelections = () => {
         let selections = []
         for(let i = 6; i < 10.5; i = i + 0.5) {
-            selections.push(
-                <option value={i} key={i} defaultChecked={i == rpe}>{i}</option>
-            )
+            if (i == rpe) {
+                selections.push(
+                    <option value={i} key={i} selected>{i}</option>
+                )
+            }
+            else {
+                selections.push(
+                    <option value={i} key={i}>{i}</option>
+                )
+            }
         }
         return selections
     }

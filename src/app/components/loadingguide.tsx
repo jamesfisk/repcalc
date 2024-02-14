@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -9,7 +9,12 @@ import Paper from '@mui/material/Paper';
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { SxProps, styled } from "@mui/material/styles";
-import Switch from "@mui/material/Switch";
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
 
 export interface LoadingGuideProps {
     weight: number,
@@ -17,9 +22,13 @@ export interface LoadingGuideProps {
     showKgToggle: boolean
 }
 
-const getKgLoads = (weight: number) => {
+const getKgLoads = (weight: number, useCollars: boolean) => {
     // Bar
     weight -= 20
+
+    if (useCollars) {
+        weight -= 5
+    }
 
     let loads = {
         twentyfives: 0,
@@ -81,7 +90,8 @@ const getLbsLoads = (weight: number) => {
   
 function LoadingGuide(props: LoadingGuideProps) {
     const [iskg, togglekg] = useState(props.iskg)
-    const load: any = iskg ? getKgLoads(props.weight) : getLbsLoads(props.weight);
+    const [useCollars, setCollars] = useState(false)
+    const load: any = iskg ? getKgLoads(props.weight, useCollars) : getLbsLoads(props.weight);
     const baseStyles: SxProps = {
         paddingTop: '16px',
         paddingBottom: '16px',
@@ -126,26 +136,60 @@ function LoadingGuide(props: LoadingGuideProps) {
     } : baseStyles;
     const KG_TO_LBS = 2.20462262185;
     const LBS_TO_KG = 0.45359237;
-    const switchkg = () =>{
-        togglekg((prev) => !prev)
-    }
-    const renderKgToggle = () => {
+    
+    const handleRadioKgClick =(event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value == "kgs") {
+            togglekg(true)
+        } else {
+            togglekg(false)
+        }
+    };
+    const renderKgRadio = () => {
         if (!props.showKgToggle) {
             return null
         }
         return (
             <Typography
-                sx={{ pr:2, margin:'auto', minWidth: '120px'}}
+                sx={{ pr:2, marginTop: 'auto', marginBottom: 'auto', minWidth: '120px'}}
                 id="lbs"
                 component="div"
                     >
-                    lbs
-                    <Switch
-                        checked={iskg}
-                        onChange={switchkg}
-                        inputProps={{ 'aria-label': 'controlled' }}
-                        />
-                    kg
+                    <FormControl>
+                        <RadioGroup
+                            row={true}
+                            aria-labelledby="demo-row-radio-buttons-group-label"
+                            name="row-radio-buttons-group"
+                            >
+                            <div className="flex flex-row">
+                                <FormControlLabel value="lbs" control={<Radio checked={!iskg} onChange={handleRadioKgClick} value={"lbs"} />} label="lbs" />
+                                <FormControlLabel value="kg" control={<Radio checked={iskg} onChange={handleRadioKgClick} value={"kgs"} />} label="kg" />
+                            </div>
+                        </RadioGroup>
+                    </FormControl>
+            </Typography>
+        )
+    }
+    
+    const handleCollarsClick =(event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.checked) {
+            setCollars(true)
+        } else {
+            setCollars(false)
+        }
+    };
+    const renderCollarsSelection = () => {
+        if (!iskg) {
+            return null
+        }
+        return (
+            <Typography
+                sx={{ margin:'auto', minWidth: '150px'}}
+                id="collars"
+                component="div"
+                >
+                <FormGroup>
+                  <FormControlLabel control={<Checkbox checked={useCollars} onChange={handleCollarsClick} />} label="2.5kg collars"/>
+                </FormGroup>
             </Typography>
         )
     }
@@ -159,14 +203,17 @@ function LoadingGuide(props: LoadingGuideProps) {
                     <Paper sx={{ width: '100%', mb: 2 }}>
                         <div className="flex flex-row justify-between">
                             <Typography
-                                sx={{ flex: '1 1 100%', pl:2, pt:2, pb:2 }}
+                                sx={{ flex: '1 1 100%', pl:2, pt:iskg ? 4 : 2, pb:2, pr: 2}}
                                 variant="h6"
                                 id="tableTitle"
                                 component="div"
                                     >
                                     {loadtext}
                             </Typography>
-                            { renderKgToggle() }
+                            <div className="flex flex-col py-2">
+                                { renderKgRadio() }
+                                { renderCollarsSelection() }
+                            </div>
                         </div>
                         <TableContainer sx={{ width: '100%' }} >
                             <Table sx={{ width: '100%' }} aria-label="simple table">
