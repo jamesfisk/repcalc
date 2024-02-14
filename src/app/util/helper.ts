@@ -1,3 +1,16 @@
+export interface Page {
+    id: string,
+    name: string,
+    href: string
+}
+
+const allPages: Page[]= [
+    { id: "rpe", name: 'RPE Calculator', href: "/" },
+    { id: "loading", name: 'Barbell Loading Guide', href: "/loading" },
+    { id: "dots", name: 'DOTS Calculator', href: "/dots" },
+    { id: "about", name: 'About', href:'/about' },
+]
+
 export interface UserSaveData {
     weight: number,
     rpe: number,
@@ -19,4 +32,4 @@ const getCurrentState = (): UserSaveData | undefined => {
     return undefined;
 }
 
-export {saveCurrentState, getCurrentState};
+export {saveCurrentState, getCurrentState, allPages};

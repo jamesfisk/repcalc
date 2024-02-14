@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import DOTSCalculator from "../components/dotscalculator";
+import NavMenu from "../components/navmenu";
+import { allPages } from "../util/helper";
 
 export const metadata: Metadata = {
   title: 'DOTS Score',
@@ -14,7 +16,7 @@ export default function Home() {
       <div className="w-full min-h-screen">
         <nav className='w-full flex flex-row justify-between absolute'>
           <h1 className='p-8 text-xl font-bold'>DOTS Score Calculator</h1>
-          <Link href="/" className="p-8 text-gray-700 dark:text-gray-300 text-sm font-bold">Back</Link>
+          <NavMenu items={allPages.filter((page) => page.id !== "dots")}/>
         </nav>
         <main className="min-h-screen">
           <DOTSCalculator />
