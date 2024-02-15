@@ -70,6 +70,13 @@ export default function DOTSCalculator() {
             togglekg(false)
         }
     };
+
+    const renderScore = () => {
+        if (dotsScore === undefined){
+            return
+        }
+        return <div className="py-4 text-xl">DOTS Score: {dotsScore}</div>
+    }
     
     const buttonClasses = "bg-blue-700 text-white font-bold py-3 my-2 px-4 rounded"
     return(
@@ -114,7 +121,7 @@ export default function DOTSCalculator() {
                     </FormControl>
                 </div>
                 <button onClick={doCalculate} className={buttonClasses} title={"Calculate DOTS Score"}>Calculate</button>
-                <div className="py-4 text-xl">DOTS Score: {dotsScore}</div>
+                {renderScore()}
             </div>
         </div>
     )

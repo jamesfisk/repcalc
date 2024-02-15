@@ -8,6 +8,7 @@ const allPages: Page[]= [
     { id: "rpe", name: 'RPE Calculator', href: "/" },
     { id: "loading", name: 'Barbell Loading Guide', href: "/loading" },
     { id: "dots", name: 'DOTS Calculator', href: "/dots" },
+    { id: "onerm", name: "1RM Calculator", href: "/onerm" },
     { id: "about", name: 'About', href:'/about' },
 ]
 
