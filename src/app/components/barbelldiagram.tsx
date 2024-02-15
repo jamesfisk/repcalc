@@ -46,10 +46,10 @@ export default function BarbellDiagram(props: BarbellDiagramProps) {
         )
     }
     const renderTwentyFives = () => {
-        return renderPlates(props.twentyfives, `h-${fullHeight} bg-red-600 ${bigPlateWidth}`)
+        return renderPlates(props.twentyfives, `h-48 bg-red-600 ${bigPlateWidth}`)
     }
     const renderTwenties = () => {
-        return renderPlates(props.twenties, `h-${fullHeight} bg-blue-600 ${mediumPlateWidth}`)
+        return renderPlates(props.twenties, `h-48 bg-blue-600 ${mediumPlateWidth}`)
     }
     const renderFifteens = () => {
         return renderPlates(props.fifteens, `h-40 bg-yellow-500 ${mediumPlateWidth}`)

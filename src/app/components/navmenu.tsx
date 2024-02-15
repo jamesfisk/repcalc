@@ -31,7 +31,7 @@ export default function NavMenu(props: NavMenuProps) {
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
             >
-                <MenuIcon fontSize='large' />
+                <MenuIcon fontSize='large' color='primary' />
             </IconButton>
             <Menu
                 id="basic-menu"
