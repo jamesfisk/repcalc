@@ -23,7 +23,10 @@ export default function BarbellDiagram(props: BarbellDiagramProps) {
     let firstPlateSeen = false;
     let numPlates = 0;
     const fullHeight = 48;
-    const maxWidth = 4;
+    const maxWidth = 5;
+    const bigPlateWidth = 'w-4'
+    const mediumPlateWidth = 'w-3'
+    const littlePlateWidth = 'w-2'
 
     const renderPlates = (count: number, classes: string) => {
         let plates = []
@@ -43,25 +46,25 @@ export default function BarbellDiagram(props: BarbellDiagramProps) {
         )
     }
     const renderTwentyFives = () => {
-        return renderPlates(props.twentyfives, `h-${fullHeight} bg-red-600 w-${maxWidth}`)
+        return renderPlates(props.twentyfives, `h-${fullHeight} bg-red-600 ${bigPlateWidth}`)
     }
     const renderTwenties = () => {
-        return renderPlates(props.twenties, `h-${fullHeight} bg-blue-600 w-${maxWidth-1}`)
+        return renderPlates(props.twenties, `h-${fullHeight} bg-blue-600 ${mediumPlateWidth}`)
     }
     const renderFifteens = () => {
-        return renderPlates(props.fifteens, `h-40 bg-yellow-500 w-${maxWidth-1}`)
+        return renderPlates(props.fifteens, `h-40 bg-yellow-500 ${mediumPlateWidth}`)
     }
     const renderTens = () => {
-        return renderPlates(props.tens, `h-32 bg-green-500 w-${maxWidth-1}`)
+        return renderPlates(props.tens, `h-32 bg-green-500 ${mediumPlateWidth}`)
     }
     const renderFives = () => {
-        return renderPlates(props.fives, `h-24 bg-white w-${maxWidth-1}`)
+        return renderPlates(props.fives, `h-24 bg-white ${mediumPlateWidth}`)
     }
     const renderTwoPointFives = () => {
-        return renderPlates(props.twopointfives, `h-20 bg-black w-${maxWidth-2}`)
+        return renderPlates(props.twopointfives, `h-20 bg-black ${littlePlateWidth}`)
     }
     const renderOnePointFives = () => {
-        return renderPlates(props.onepointtwofives, `h-16 bg-zinc-300 w-${maxWidth-2}`)
+        return renderPlates(props.onepointtwofives, `h-16 bg-zinc-300 ${littlePlateWidth}`)
     }
     const renderCollar = () => {
         if (!props.collar) {
