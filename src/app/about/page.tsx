@@ -26,7 +26,7 @@ export default function Home() {
                 <br/>
                 <p>The DOTS score calculator uses the formula from <a className='text-blue-500 dark:text-blue-300'  target="_blank" href="https://www.powerlifting.sport/rules/codes/info/ipf-formula">IPF regulations</a>.</p>
                 <br/>
-                <p>1RM Calculator uses Wathan's formula.</p>
+                <p>1RM Calculator uses Wathan&apos;s formula.</p>
                 <br/>
                 <p>Have feedback? <a className='text-blue-500 dark:text-blue-300'  target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdZgCf4Tu6y-5SvOfZkanyqr0pQj8M9u7-RpRiWFUvL4piTQA/viewform?usp=sf_link">Help us improve</a>!</p>
                 <br/>

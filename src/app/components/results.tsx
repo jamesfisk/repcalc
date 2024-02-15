@@ -93,7 +93,7 @@ function Results(props: ResultsProps) {
                   <p className="text-center mt-auto">Est. 1RM {rounded(props.onerm)}</p>
               </div>
             </div>
-            <LoadingGuide weight={weight} iskg={loadDefaultKg} showKgToggle={true}/>
+            <LoadingGuide weight={weight} iskg={loadDefaultKg} showKgToggle={true} forceStackUi={true}/>
         </div>
     )
 }

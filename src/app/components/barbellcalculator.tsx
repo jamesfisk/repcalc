@@ -16,7 +16,8 @@ export default function BarbellCalculator() {
             inputWeightRef.current = Number.parseFloat(e.target.value)
         }
     }
-    const submitWeight = () => {
+    const submitWeight = (e: React.SyntheticEvent) => {
+      e.preventDefault()
       setWeight(inputWeightRef.current);
     }
     const renderLoadingGuide = () => {
@@ -25,14 +26,14 @@ export default function BarbellCalculator() {
       }
       return ( 
         <div className="max-w-screen-md m-auto px-2">
-          <LoadingGuide weight={weight} iskg={true} showKgToggle={true}/>
+          <LoadingGuide weight={weight} iskg={true} showKgToggle={true} forceStackUi={false}/>
         </div>
       );
     }
 
     return (
         <div>
-            <form onSubmit={submitWeight} action="javascript:void(0);">
+            <form onSubmit={submitWeight}>
                 <div className="flex flex-row justify-center align-top pt-24 sm:pt-36 px-6 max-w-screen-md m-auto">
                     <div data-testid="load" className="w-full flex flex-col justify-center max-w-sm">
                         <label htmlFor="weight" className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" >

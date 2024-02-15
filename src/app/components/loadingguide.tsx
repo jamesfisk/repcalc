@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useState } from "react"
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -15,14 +15,16 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import BarbellDiagram, { BarbellDiagramProps } from "./barbelldiagram";
 
 export interface LoadingGuideProps {
     weight: number,
     iskg: boolean,
-    showKgToggle: boolean
+    showKgToggle: boolean,
+    forceStackUi: boolean
 }
 
-const getKgLoads = (weight: number, useCollars: boolean) => {
+const getKgLoads = (weight: number, useCollars: boolean): BarbellDiagramProps => {
     // Bar
     weight -= 20
 
@@ -37,7 +39,8 @@ const getKgLoads = (weight: number, useCollars: boolean) => {
         tens: 0,
         fives: 0,
         twopointfives: 0,
-        onepointtwofives: 0 
+        onepointtwofives: 0,
+        collar: useCollars
     }
     loads.twentyfives = Math.floor(weight / 50)
     weight -= loads.twentyfives * 50
@@ -197,7 +200,7 @@ function LoadingGuide(props: LoadingGuideProps) {
         `${props.weight}kg (${Math.round((props.weight * KG_TO_LBS) * 100)/100}lbs)` :
         `${props.weight}lbs (${Math.round((props.weight * LBS_TO_KG) * 100)/100}kg)`
     return(
-        <div className="w-full flex flex-col justify-center">
+        <div className={`w-full flex ${props.forceStackUi ? '' : 'md:flex-row md:justify-around'} flex-col justify-center`}>
             <div className="py-6 md:py-3 w-full">
                 <Box sx={{ width: '100%' }}>
                     <Paper sx={{ width: '100%', mb: 2 }}>
@@ -243,6 +246,9 @@ function LoadingGuide(props: LoadingGuideProps) {
                         </TableContainer>
                     </Paper>
                 </Box>
+            </div>
+            <div>
+                {iskg && <BarbellDiagram {...getKgLoads(props.weight, useCollars)} /> }
             </div>
         </div>
     )
