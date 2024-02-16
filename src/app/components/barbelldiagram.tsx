@@ -1,5 +1,7 @@
 
 export interface BarbellDiagramProps {
+    fortyfives: number,
+    thirtyfives: number,
     twentyfives: number,
     twenties: number,
     fifteens: number,
@@ -7,26 +9,18 @@ export interface BarbellDiagramProps {
     fives: number,
     twopointfives: number,
     onepointtwofives: number,
-    collar: boolean
+    collar: boolean,
+    isKg: boolean,
+    leftover: number
 }
 
 export default function BarbellDiagram(props: BarbellDiagramProps) {
-    // var props: BarbellDiagramProps = {
-    //     twentyfives: 3,
-    //     twenties: 1,
-    //     fifteens: 1,
-    //     tens: 1,
-    //     fives: 1,
-    //     twopointfives: 1,
-    //     onepointtwofives: 1
-    // }
     let firstPlateSeen = false;
     let numPlates = 0;
-    const fullHeight = 48;
-    const maxWidth = 5;
     const bigPlateWidth = 'w-4'
     const mediumPlateWidth = 'w-3'
     const littlePlateWidth = 'w-2'
+    const lbPlateColor = 'bg-slate-800'
 
     const renderPlates = (count: number, classes: string) => {
         let plates = []
@@ -40,13 +34,19 @@ export default function BarbellDiagram(props: BarbellDiagramProps) {
             numPlates += 1
         }
         return (
-            <div className={`flex flex-col justify-center h-${fullHeight}`}>
+            <div className={`flex flex-col justify-center h-48`}>
                 <div className="flex flex-row justify-start">{plates}</div>
             </div>
         )
     }
+    const renderFortyFives = () => {
+        return renderPlates(props.fortyfives, `h-48 ${lbPlateColor} ${bigPlateWidth}`)
+    }
+    const renderThirtyFives = () => {
+        return renderPlates(props.thirtyfives, `h-40 ${lbPlateColor} ${bigPlateWidth}`)
+    }
     const renderTwentyFives = () => {
-        return renderPlates(props.twentyfives, `h-48 bg-red-600 ${bigPlateWidth}`)
+        return renderPlates(props.twentyfives, `${props.isKg ? 'h-48 bg-red-600' : `h-36 ${lbPlateColor}`} ${bigPlateWidth}`)
     }
     const renderTwenties = () => {
         return renderPlates(props.twenties, `h-48 bg-blue-600 ${mediumPlateWidth}`)
@@ -55,16 +55,16 @@ export default function BarbellDiagram(props: BarbellDiagramProps) {
         return renderPlates(props.fifteens, `h-40 bg-yellow-500 ${mediumPlateWidth}`)
     }
     const renderTens = () => {
-        return renderPlates(props.tens, `h-32 bg-green-500 ${mediumPlateWidth}`)
+        return renderPlates(props.tens, `${props.isKg ? 'h-32 bg-green-500' : `h-28 ${lbPlateColor}`} ${mediumPlateWidth}`)
     }
     const renderFives = () => {
-        return renderPlates(props.fives, `h-24 bg-white ${mediumPlateWidth}`)
+        return renderPlates(props.fives, `h-24 bg-white ${props.isKg ? 'h-24 bg-white' : `h-24 ${lbPlateColor}`} ${mediumPlateWidth}`)
     }
     const renderTwoPointFives = () => {
-        return renderPlates(props.twopointfives, `h-20 bg-black ${littlePlateWidth}`)
+        return renderPlates(props.twopointfives, `h-20 ${props.isKg ? 'bg-black' : `${lbPlateColor}`} ${littlePlateWidth}`)
     }
     const renderOnePointFives = () => {
-        return renderPlates(props.onepointtwofives, `h-16 bg-zinc-300 ${littlePlateWidth}`)
+        return renderPlates(props.onepointtwofives, `h-16 ${props.isKg ? 'bg-zinc-300' : `${lbPlateColor}`} ${littlePlateWidth}`)
     }
     const renderCollar = () => {
         if (!props.collar) {
@@ -94,6 +94,8 @@ export default function BarbellDiagram(props: BarbellDiagramProps) {
                     <div id="bar-end-container" className="flex flex-col justify-center w-1">
                         <div id="bar-end" className="h-7 bg-slate-400 w-1 border-solid border-black border-t-2 border-b-2 border-l-2"></div>
                     </div>
+                    {renderFortyFives()}
+                    {renderThirtyFives()}
                     {renderTwentyFives()}
                     {renderTwenties()}
                     {renderFifteens()}

@@ -39,7 +39,7 @@ export default function BarbellCalculator() {
                         <label htmlFor="weight" className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" >
                             Loading Weight
                         </label>
-                        <input id="weight" type="number" inputMode="numeric" pattern="[0-9]*" onChange={updateInputWeight} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></input>
+                        <input id="weight" step="any" type="number" inputMode="decimal" pattern="[0-9]+([,\.][0-9]+)?"  onChange={updateInputWeight} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></input>
                     </div>
                     <div className="flex flex-row justify-center pl-3 mt-auto mb-auto text-xl pt-4">
                         <Button type="submit" variant="outlined" size={"large"}>Compute</Button>
