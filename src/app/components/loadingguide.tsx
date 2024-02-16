@@ -212,13 +212,13 @@ function LoadingGuide(props: LoadingGuideProps) {
         `${barload}kg (${Math.round((barload * KG_TO_LBS) * 100)/100}lbs)` :
         `${barload}lbs (${Math.round((barload * LBS_TO_KG) * 100)/100}kg)`
     return(
-        <div className={`w-full flex ${props.forceStackUi ? '' : 'md:flex-row md:justify-around'} flex-col justify-center`}>
+        <div className={`w-full pt-4 flex ${props.forceStackUi ? '' : 'md:flex-row md:justify-around'} flex-col justify-center`}>
             <div className="py-6 md:py-3 w-full">
                 <Box sx={{ width: '100%' }}>
                     <Paper sx={{ width: '100%', mb: 2 }}>
-                        <div className="flex flex-row justify-between">
+                        <div className="flex flex-row justify-between h-28">
                             <Typography
-                                sx={{ flex: '1 1 100%', pl:2, pt:iskg ? 4 : 2, pb:2, pr: 2}}
+                                sx={{ flex: '1 1 100%', pl:3, pt:5, pb:2, pr: 2}}
                                 variant="h6"
                                 id="tableTitle"
                                 component="div"

@@ -25,8 +25,10 @@ export default function BarbellDiagram(props: BarbellDiagramProps) {
     const renderPlates = (count: number, classes: string) => {
         let plates = []
         for(let i=0; i<count;i++) {
+            const borderl = firstPlateSeen ? ( i == 0 ? '' : 'border-l') : 'border-l-2'
+            const borderr = i == count-1 ? 'border-r-2' : 'border-r';
             plates.push(
-                <div key={i} className={`${classes} rounded-sm border-solid border-black border-t-2 border-b-2 border-r-2 ${firstPlateSeen ? '' : 'border-l-2'}`}></div>
+                <div key={i} className={`${classes} rounded-sm border-solid border-black border-t-2 border-b-2 ${borderl} ${borderr}`}></div>
             )
             if (!firstPlateSeen) {
                 firstPlateSeen = true
