@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
     return (
-      <div className="w-full min-h-screen">
+      <div className="w-full min-h-screen pb-24">
         <nav className='w-full flex flex-row justify-between absolute'>
           <h1 className='p-8 text-xl font-bold'>About</h1>
           <NavMenu items={allPages.filter((page) => page.id !== "about")}/>

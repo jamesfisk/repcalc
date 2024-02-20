@@ -18,7 +18,7 @@ export default function Home() {
           <h1 className='p-8 text-xl font-bold'>Barbell Loading Guide</h1>
           <NavMenu items={allPages.filter((page) => page.id !== "loading")}/>
         </nav>
-        <main className="min-h-screen">
+        <main className="min-h-screen pb-24">
            <BarbellCalculator/>
         </main>
       </div>

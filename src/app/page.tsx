@@ -17,7 +17,7 @@ export default function Home() {
         <h1 className='p-8 text-xl font-bold'>RPE Calculator</h1>
         <NavMenu items={allPages.filter((page) => page.id !== "rpe")}/>
       </nav>
-      <main className="min-h-screen">
+      <main className="min-h-screen pb-24">
         <Calculator/>
       </main>
     </div>
