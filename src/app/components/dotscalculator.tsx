@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from "react";
-import FormGroup from '@mui/material/FormGroup';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -12,7 +11,6 @@ import FormLabel from "@mui/material/FormLabel";
 export default function DOTSCalculator() {
     var MALE_COEF = [-0.000001093, 0.0007391293, -0.1918759221 , 24.0900756, -307.75076];
     var FEMALE_COEF = [-0.0000010706, 0.0005158568, -0.1126655495, 13.6175032, -57.96288];
-    const KG_TO_LBS = 2.20462262185;
     const LBS_TO_KG = 0.45359237;
     const [bodyweight, setBodyweight] = useState<number | undefined>();
     const updateBodyweight = (e: React.ChangeEvent<HTMLInputElement>) => {

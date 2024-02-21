@@ -7,8 +7,9 @@ export interface Page {
 const allPages: Page[]= [
     { id: "rpe", name: 'RPE Calculator', href: "/" },
     { id: "loading", name: 'Barbell Loading Guide', href: "/loading" },
-    { id: "dots", name: 'DOTS Calculator', href: "/dots" },
+    { id: "kgtolbs", name: 'Convert kg to lbs', href: "/kgtolbs" },
     { id: "onerm", name: "1RM Calculator", href: "/onerm" },
+    { id: "dots", name: 'DOTS Calculator', href: "/dots" },
     { id: "about", name: 'About', href:'/about' },
 ]
 

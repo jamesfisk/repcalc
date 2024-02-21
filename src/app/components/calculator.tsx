@@ -42,15 +42,9 @@ export default function Calculator() {
     const renderRepsSelections = () => {
         let selections = []
         for(let i = 1; i < 13; i++) {
-            if (i == reps) {
-                selections.push(
-                    <option value={i} key={i} selected>{i}</option>
-                )
-            } else {
-                selections.push(
-                    <option value={i} key={i}>{i}</option>
-                )
-            }
+            selections.push(
+                <option value={i} key={i}>{i}</option>
+            )
         }
         return selections
     }
@@ -58,16 +52,9 @@ export default function Calculator() {
     const renderRpeSelections = () => {
         let selections = []
         for(let i = 6; i < 10.5; i = i + 0.5) {
-            if (i == rpe) {
-                selections.push(
-                    <option value={i} key={i} selected>{i}</option>
-                )
-            }
-            else {
-                selections.push(
-                    <option value={i} key={i}>{i}</option>
-                )
-            }
+            selections.push(
+                <option value={i} key={i}>{i}</option>
+            )
         }
         return selections
     }
@@ -98,7 +85,7 @@ export default function Calculator() {
                         <label htmlFor="reps" className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" >
                             Current Reps
                         </label>
-                        <select id="reps" onChange={updateReps} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <select id="reps" defaultValue={reps} onChange={updateReps} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                             {renderRepsSelections()}
                         </select>
                     </div>
@@ -107,7 +94,7 @@ export default function Calculator() {
                         <label htmlFor="rpe" className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" >
                             Current RPE
                         </label>
-                        <select id="rpe" onChange={updateRpe} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <select id="rpe" defaultValue={rpe} onChange={updateRpe} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                             {renderRpeSelections()}
                         </select>
                     </div>
