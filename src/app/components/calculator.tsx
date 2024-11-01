@@ -75,7 +75,7 @@ export default function Calculator() {
     const buttonAlt = "Compute your 1RM"
 
     return (
-        <div data-testid="calc" className="w-full flex flex-col justify-center md:flex-row md:justify-around align-top pt-24 sm:pt-36 px-6 md:px-0">
+        <div data-testid="calc" className="w-full flex flex-col justify-center align-top items-center pt-24 sm:pt-36 px-6 md:px-0">
             <div className="flex flex-col w-full md:w-1/3">
                 <label htmlFor="weight" className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" >
                     Current Weight
