@@ -134,7 +134,7 @@ const rpe_lookup: { [key: number]: {[key: number]: number} }  =  {
 };
 
 const rounded = (num: number) => {
-    return Math.ceil(num /2.5) * 2.5
+    return Math.ceil(parseFloat(num.toFixed(4)) /2.5) * 2.5
 }
 
 export {rpe_lookup, rounded};
