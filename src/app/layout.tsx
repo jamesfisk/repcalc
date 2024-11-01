@@ -1,26 +1,25 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/react';
-import { Metadata } from 'next';
+import "./globals.css";
+import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { Metadata } from "next";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.rpecalculator.app')
-}
-
+  metadataBase: new URL("https://www.rpecalculator.app"),
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body className={inter.className}>
         {children}
-        <Analytics/>
+        <Analytics />
       </body>
     </html>
-  )
+  );
 }

@@ -1,49 +1,49 @@
 {
-    "name": "RPE Calculator",
-    "short_name": "RPECalc",
-    "description": "RPE Calculator for weightlifting and powerlifting. Estimate RPE in kilos or pounds for your next bench, squat, deadlift, snatch or clean and jerk lift.",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#000000",
-    "icons": [
-      {
-          "src": "/icon-192x192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-      },
-      {
-          "src": "/icon-256x256.png",
-          "sizes": "256x256",
-          "type": "image/png"
-      },
-      {
-          "src": "/icon-384x384.png",
-          "sizes": "384x384",
-          "type": "image/png"
-      },
-      {
-          "src": "/icon-512x512.png",
-          "sizes": "512x512",
-          "type": "image/png"
-      },
-      {
-        "src": "/maskable_icon_x192.png",
-        "sizes": "192x192",
-        "type": "image/png",
-        "purpose": "maskable"
-      },
-      {
-        "src": "/maskable_icon_x384.png",
-        "sizes": "384x384",
-        "type": "image/png",
-        "purpose": "maskable"
-      },
-      {
-        "src": "/maskable_icon_x512.png",
-        "sizes": "512x512",
-        "type": "image/png",
-        "purpose": "maskable"
-      }
-    ]
-  }
+  "name": "RPE Calculator",
+  "short_name": "RPECalc",
+  "description": "RPE Calculator for weightlifting and powerlifting. Estimate RPE in kilos or pounds for your next bench, squat, deadlift, snatch or clean and jerk lift.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/maskable_icon_x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/maskable_icon_x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/maskable_icon_x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

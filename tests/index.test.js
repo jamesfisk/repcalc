@@ -1,13 +1,13 @@
-import { render, screen } from '@testing-library/react'
-import Calculator from '../src/app/components/calculator'
-import '@testing-library/jest-dom'
- 
-describe('Calc', () => {
-  it('renders a heading', () => {
-    render(<Calculator />)
+import { render, screen } from "@testing-library/react";
+import Calculator from "../src/app/components/calculator";
+import "@testing-library/jest-dom";
 
-    const calcheader = screen.getByTestId('calc');
- 
-    expect(calcheader).toBeInTheDocument()
-  })
-})
+describe("Calc", () => {
+  it("renders a heading", () => {
+    render(<Calculator />);
+
+    const calcheader = screen.getByTestId("calc");
+
+    expect(calcheader).toBeInTheDocument();
+  });
+});
