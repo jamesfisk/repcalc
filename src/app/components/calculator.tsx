@@ -9,15 +9,15 @@ export default function Calculator() {
     let defaultReps = 1;
     let defaultRpe = 6;
     const computeOneRm = (weight: number, reps: number, rpe: number) => {
-        return weight / rpe_lookup[reps][rpe] *  100
+        return weight / rpe_lookup[reps][rpe] * 100
     }
     const defaultOneRm = defaultWeight ? computeOneRm(defaultWeight, defaultReps, defaultRpe) : undefined;
-    
+
     const [weight, setWeight] = useState<number | undefined>(defaultWeight);
     const [reps, setReps] = useState(defaultReps)
     const [rpe, setRpe] = useState(defaultRpe)
     const [onerm, setOneRm] = useState<number | undefined>(defaultOneRm)
-    
+
     useEffect(() => {
         const save = getCurrentState();
         if (save) {
@@ -28,7 +28,7 @@ export default function Calculator() {
     }, [])
 
     const updateWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (isNaN(Number.parseFloat(e.target.value))){
+        if (isNaN(Number.parseFloat(e.target.value))) {
             setWeight(undefined)
         }
         else {
@@ -45,7 +45,7 @@ export default function Calculator() {
 
     const renderRepsSelections = () => {
         let selections = []
-        for(let i = 1; i < 13; i++) {
+        for (let i = 1; i < 13; i++) {
             selections.push(
                 <option value={i} key={i}>{i}</option>
             )
@@ -55,7 +55,7 @@ export default function Calculator() {
 
     const renderRpeSelections = () => {
         let selections = []
-        for(let i = 6; i < 10.5; i = i + 0.5) {
+        for (let i = 6; i < 10.5; i = i + 0.5) {
             selections.push(
                 <option value={i} key={i}>{i}</option>
             )
@@ -64,26 +64,26 @@ export default function Calculator() {
     }
 
     const doCalculate = () => {
-        if (weight === undefined){
+        if (weight === undefined) {
             return
         }
-        saveCurrentState({ weight: weight, reps: reps, rpe: rpe});
+        saveCurrentState({ weight: weight, reps: reps, rpe: rpe });
         setOneRm(computeOneRm(weight, reps, rpe));
     }
 
     const buttonClasses = "bg-blue-700 text-white font-bold py-2 px-4 rounded"
     const buttonAlt = "Compute your 1RM"
-    
-    return(
+
+    return (
         <div data-testid="calc" className="w-full flex flex-col justify-center md:flex-row md:justify-around align-top pt-24 sm:pt-36 px-6 md:px-0">
             <div className="flex flex-col w-full md:w-1/3">
                 <label htmlFor="weight" className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" >
                     Current Weight
                 </label>
                 <input id="weight" type="number" inputMode="decimal" pattern="[0-9]+([,\.][0-9]+)?" value={weight || ''} onChange={updateWeight} className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></input>
-                
-                <div className="flex flex-wrap -mx-3 mb-6">
-                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+
+                <div className="flex flex-wrap -mx-3 md:mb-6">
+                    <div className="w-1/2 px-3 mb-4 md:mb-0">
                         <label htmlFor="reps" className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" >
                             Current Reps
                         </label>
@@ -92,7 +92,7 @@ export default function Calculator() {
                         </select>
                     </div>
 
-                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <div className="w-1/2 px-3 mb-6 md:mb-0">
                         <label htmlFor="rpe" className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" >
                             Current RPE
                         </label>
