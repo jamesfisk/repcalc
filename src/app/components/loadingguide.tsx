@@ -215,10 +215,12 @@ function LoadingGuide(props: LoadingGuideProps) {
         `${barload}lbs (${Math.round((barload * LBS_TO_KG) * 100) / 100}kg)`
     return (
         <div className="w-full md:w-1/2 flex flex-col items-center">
-            <div className="flex flex-row w-full justify-between">
-                <p className="text-center text-xl font-bold mt-auto">Target weight: {props.weight}</p>
-                <p className="text-center mt-auto">Est. 1RM {rounded(props.onerm)}</p>
-            </div>
+            {props.onerm >= 0 && (
+                <div className="flex flex-row w-full justify-between">
+                    <p className="text-center text-xl font-bold mt-auto">Target weight: {props.weight}</p>
+                    <p className="text-center mt-auto">Est. 1RM {rounded(props.onerm)}</p>
+                </div>
+            )}
             <div className={`w-full pt-4 flex md:flex-row md:justify-around flex-col justify-center`}>
                 <div className="py-6 md:py-3 w-full">
                     <Box sx={{ width: '100%' }}>
