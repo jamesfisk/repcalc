@@ -9,6 +9,9 @@ export default function BarbellCalculator() {
     const [inputWeight, setInputWeight] = useState<number | undefined>(undefined);
 
     const updateInputWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (weight !== undefined) {
+            setWeight(undefined);
+        }
         if (isNaN(Number.parseFloat(e.target.value))) {
             setInputWeight(undefined);
         }
