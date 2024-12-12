@@ -116,12 +116,14 @@ function LoadingGuide(props: LoadingGuideProps) {
     const redstyles: SxProps = (iskg && load.twentyfives > 0) || (!iskg && load.fortyfives > 0) ? {
         ...baseStyles,
         backgroundColor: '#d30000',
-        color: 'white'
+        color: 'white',
+        borderRadius: '0 0 0 4px'
     } : baseStyles;
     const bluestyles: SxProps = (iskg && load.twenties > 0) || (!iskg && load.thirtyfives > 0) ? {
         ...baseStyles,
         backgroundColor: '#000de7',
-        color: 'white'
+        color: 'white',
+        borderRadius: '10px'
     } : baseStyles;
     const yellowstyles: SxProps = (iskg && load.fifteens > 0) || (!iskg && load.twentyfives > 0) ? {
         ...baseStyles,
@@ -148,7 +150,8 @@ function LoadingGuide(props: LoadingGuideProps) {
         ...baseStyles,
         backgroundColor: '#b4baba',
         opacity: '80%',
-        color: 'white'
+        color: 'white',
+        borderRadius: '0 0 4px 0'
     } : baseStyles;
     const KG_TO_LBS = 2.20462262185;
     const LBS_TO_KG = 0.45359237;
