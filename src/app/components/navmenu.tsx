@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Page } from '../util/helper';
 import Link from 'next/link';
+import Paper from '@mui/material/Paper';
 
 export interface NavMenuProps {
     items: Page[]
@@ -16,10 +17,10 @@ export default function NavMenu(props: NavMenuProps) {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
-      setAnchorEl(null);
+        setAnchorEl(null);
     };
 
     return (
@@ -33,25 +34,28 @@ export default function NavMenu(props: NavMenuProps) {
             >
                 <MenuIcon fontSize='large' color='primary' />
             </IconButton>
-            <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                'aria-labelledby': 'basic-button',
-                }}
+            <Paper>
+                <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                    }}
+
                 >
-                {
-                    props.items.map((page, i) => {
-                        return (
-                            <Link key={i} href={page.href}>
-                                <MenuItem key={i} >{page.name}</MenuItem>
-                            </Link>
-                        )
-                    })
-                }
-            </Menu> 
+                    {
+                        props.items.map((page, i) => {
+                            return (
+                                <Link key={i} href={page.href}>
+                                    <MenuItem key={i}>{page.name}</MenuItem>
+                                </Link>
+                            )
+                        })
+                    }
+                </Menu>
+            </Paper>
         </div>
     )
 }

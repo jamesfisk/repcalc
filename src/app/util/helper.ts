@@ -4,13 +4,14 @@ export interface Page {
     href: string
 }
 
-const allPages: Page[]= [
+const allPages: Page[] = [
     { id: "rpe", name: 'RPE Calculator', href: "/" },
     { id: "loading", name: 'Barbell Loading Guide', href: "/loading" },
+    // { id: "platecalculator", name: 'Weight From Barbell Plates', href: "/platecalculator" },
     { id: "kgtolbs", name: 'Convert kg to lbs', href: "/kgtolbs" },
     { id: "onerm", name: "1RM Calculator", href: "/onerm" },
     { id: "dots", name: 'DOTS Calculator', href: "/dots" },
-    { id: "about", name: 'About', href:'/about' },
+    { id: "about", name: 'About', href: '/about' },
 ]
 
 export interface UserSaveData {
@@ -34,4 +35,4 @@ const getCurrentState = (): UserSaveData | undefined => {
     return undefined;
 }
 
-export {saveCurrentState, getCurrentState, allPages};
+export { saveCurrentState, getCurrentState, allPages };
