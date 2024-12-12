@@ -123,7 +123,6 @@ function LoadingGuide(props: LoadingGuideProps) {
         ...baseStyles,
         backgroundColor: '#000de7',
         color: 'white',
-        borderRadius: '10px'
     } : baseStyles;
     const yellowstyles: SxProps = (iskg && load.fifteens > 0) || (!iskg && load.twentyfives > 0) ? {
         ...baseStyles,
