@@ -33,6 +33,7 @@ export default function BarbellCalculator() {
             <LoadingGuide weight={weight} iskg={true} showKgToggle={true} forceStackUi={false} onerm={-1} />
         );
     }
+    const buttonClasses = "bg-blue-700 text-white font-bold py-2 px-4 rounded h-full"
 
     return (
         <div className="w-full flex flex-col items-center">
@@ -45,21 +46,21 @@ export default function BarbellCalculator() {
                         <div className="flex flex-row">
                             <input id="weight" step="any" type="number" inputMode="decimal" pattern="[0-9]+([,\.][0-9]+)?" onChange={updateInputWeight} className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></input>
                             <div className="pl-3">
-                                <Button
+                                <button
                                     type="submit"
-                                    variant="outlined"
-                                    size={"large"}
                                     disabled={inputWeight === undefined}
-                                    className="h-full"
+                                    className={buttonClasses}
                                 >
                                     Compute
-                                </Button>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
-            {renderLoadingGuide()}
+            <div className="w-full flex flex-row justify-center align-top pt-6 px-6 m-auto">
+                {renderLoadingGuide()}
+            </div>
         </div>
     )
 }
