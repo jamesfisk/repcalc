@@ -30,19 +30,19 @@ export default function PlateLoader() {
     const [weight, setWeight] = useState<number>(plates.isKg ? 20 : 45);
 
     const addPlate = (key: keyof BarbellDiagramProps, weight: number) => {
-        if (key in plates && typeof plates[key] === 'number' && plates[key] < 6) {
+        if (key in plates && typeof plates[key] === 'number' && (plates[key] as number) < 6) {
             setPlates({
                 ...plates,
-                [key]: plates[key] + 1
+                [key]: (plates[key] as number) + 1
             });
             setWeight((prev) => prev + 2 * weight);
         }
     }
     const removePlate = (key: keyof BarbellDiagramProps, weight: number) => {
-        if (key in plates && typeof plates[key] === 'number' && plates[key] > 0) {
+        if (key in plates && typeof plates[key] === 'number' && (plates[key] as number) > 0) {
             setPlates({
                 ...plates,
-                [key]: plates[key] - 1
+                [key]: (plates[key] as number) - 1
             });
             setWeight((prev) => prev - 2 * weight);
         }
@@ -51,7 +51,7 @@ export default function PlateLoader() {
         return (
             <div className="flex flex-row justify-between w-full pt-2">
                 <div className="pt-2 font-bold flex flex-row justify-between pr-1">
-                    <div className={"text-slate-500 w-4"}>{typeof plates[key] === 'number' && plates[key] > 0 ? `${plates[key]} ` : ''}</div>
+                    <div className={"text-slate-500 w-4"}>{typeof plates[key] === 'number' && (plates[key] as number) > 0 ? `${plates[key]} ` : ''}</div>
                     <div className={'text-slate-900'}>{name}</div>
                 </div>
                 <ButtonGroup variant="contained" aria-label="45s">
