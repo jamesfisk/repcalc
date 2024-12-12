@@ -1,4 +1,4 @@
-const rpe_lookup: { [key: number]: {[key: number]: number} }  =  {
+const rpe_lookup: { [key: number]: { [key: number]: number } } = {
     1: {
         10: 100,
         9.5: 97.8,
@@ -134,7 +134,37 @@ const rpe_lookup: { [key: number]: {[key: number]: number} }  =  {
 };
 
 const rounded = (num: number) => {
-    return Math.ceil(parseFloat(num.toFixed(4)) /2.5) * 2.5
+    return Math.ceil(parseFloat(num.toFixed(4)) / 2.5) * 2.5
 }
 
-export {rpe_lookup, rounded};
+const roundedTwoPlaces = (num: number): number => {
+    return Math.round(num * 100) / 100
+}
+
+
+const plateToColorMap = {
+    'kg': {
+        'twentyfives': 'bg-red-600',
+        'twenties': 'bg-blue-600',
+        'fifteens': 'bg-yellow-500',
+        'tens': 'bg-green-500',
+        'fives': 'bg-white',
+        'twopointfives': 'bg-black',
+        'onepointtwofives': 'bg-zinc-300',
+    },
+    'lbs': {
+        'fiftyfives': 'bg-red-800',
+        'fourtyfives': 'bg-sky-700',
+        'thirtyfives': 'bg-yellow-400',
+        'twentyfives': 'bg-green-500',
+        'tens': 'bg-white',
+        'fives': 'bg-red-800',
+        'twopointfives': 'bg-green-900',
+        'onepointtwofives': 'bg-white'
+    }
+}
+
+const KG_TO_LBS = 2.20462262185;
+const LBS_TO_KG = 0.45359237;
+
+export { rpe_lookup, rounded, plateToColorMap, LBS_TO_KG, KG_TO_LBS, roundedTwoPlaces };

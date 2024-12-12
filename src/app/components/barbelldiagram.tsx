@@ -1,5 +1,7 @@
+import { plateToColorMap } from "./consts";
 
 export interface BarbellDiagramProps {
+    fiftyfives: number,
     fortyfives: number,
     thirtyfives: number,
     twentyfives: number,
@@ -17,16 +19,16 @@ export interface BarbellDiagramProps {
 export default function BarbellDiagram(props: BarbellDiagramProps) {
     let firstPlateSeen = false;
     let numPlates = 0;
-    const bigPlateWidth = 'w-4'
-    const mediumPlateWidth = 'w-3'
+    const extraBigPlateWidth = 'w-6'
+    const bigPlateWidth = props.isKg ? 'w-4' : 'w-5'
+    const mediumPlateWidth = props.isKg ? 'w-3' : 'w-4'
     const littlePlateWidth = 'w-2'
-    const lbPlateColor = 'bg-slate-800'
 
     const renderPlates = (count: number, classes: string) => {
         let plates = []
-        for(let i=0; i<count;i++) {
-            const borderl = firstPlateSeen ? ( i == 0 ? '' : 'border-l') : 'border-l-2'
-            const borderr = i == count-1 ? 'border-r-2' : 'border-r';
+        for (let i = 0; i < count; i++) {
+            const borderl = firstPlateSeen ? (i == 0 ? '' : 'border-l') : 'border-l-2'
+            const borderr = i == count - 1 ? 'border-r-2' : 'border-r';
             plates.push(
                 <div key={i} className={`${classes} rounded-sm border-solid border-black border-t-2 border-b-2 ${borderl} ${borderr}`}></div>
             )
@@ -41,32 +43,35 @@ export default function BarbellDiagram(props: BarbellDiagramProps) {
             </div>
         )
     }
+    const renderFiftyFives = () => {
+        return renderPlates(props.fiftyfives, `h-48 ${props.isKg ? '' : plateToColorMap['lbs']['fiftyfives']} ${extraBigPlateWidth}`)
+    }
     const renderFortyFives = () => {
-        return renderPlates(props.fortyfives, `h-48 ${lbPlateColor} ${bigPlateWidth}`)
+        return renderPlates(props.fortyfives, `h-48 ${props.isKg ? '' : plateToColorMap['lbs']['fourtyfives']} ${bigPlateWidth}`)
     }
     const renderThirtyFives = () => {
-        return renderPlates(props.thirtyfives, `h-40 ${lbPlateColor} ${bigPlateWidth}`)
+        return renderPlates(props.thirtyfives, `h-40 ${props.isKg ? '' : plateToColorMap['lbs']['thirtyfives']} ${bigPlateWidth}`)
     }
     const renderTwentyFives = () => {
-        return renderPlates(props.twentyfives, `${props.isKg ? 'h-48 bg-red-600' : `h-36 ${lbPlateColor}`} ${bigPlateWidth}`)
+        return renderPlates(props.twentyfives, `${props.isKg ? `h-48 ${plateToColorMap['kg']['twentyfives']}` : `h-36 ${plateToColorMap['lbs']['twentyfives']}`} ${bigPlateWidth}`)
     }
     const renderTwenties = () => {
-        return renderPlates(props.twenties, `h-48 bg-blue-600 ${mediumPlateWidth}`)
+        return renderPlates(props.twenties, `h-48 ${props.isKg ? plateToColorMap['kg']['twenties'] : ''} ${mediumPlateWidth}`)
     }
     const renderFifteens = () => {
-        return renderPlates(props.fifteens, `h-40 bg-yellow-500 ${mediumPlateWidth}`)
+        return renderPlates(props.fifteens, `h-40 ${props.isKg ? plateToColorMap['kg']['fifteens'] : ''} ${mediumPlateWidth}`)
     }
     const renderTens = () => {
-        return renderPlates(props.tens, `${props.isKg ? 'h-32 bg-green-500' : `h-28 ${lbPlateColor}`} ${mediumPlateWidth}`)
+        return renderPlates(props.tens, `${props.isKg ? `h-32 ${plateToColorMap['kg']['tens']}` : `h-28 ${plateToColorMap['lbs']['tens']}`} ${littlePlateWidth}`)
     }
     const renderFives = () => {
-        return renderPlates(props.fives, `h-24 bg-white ${props.isKg ? 'h-24 bg-white' : `h-24 ${lbPlateColor}`} ${mediumPlateWidth}`)
+        return renderPlates(props.fives, `h-24 ${props.isKg ? plateToColorMap['kg']['fives'] : plateToColorMap['lbs']['fives']} ${littlePlateWidth}`)
     }
     const renderTwoPointFives = () => {
-        return renderPlates(props.twopointfives, `h-20 ${props.isKg ? 'bg-black' : `${lbPlateColor}`} ${littlePlateWidth}`)
+        return renderPlates(props.twopointfives, `h-20 ${props.isKg ? plateToColorMap['kg']['twopointfives'] : plateToColorMap['lbs']['twopointfives']} ${littlePlateWidth}`)
     }
     const renderOnePointFives = () => {
-        return renderPlates(props.onepointtwofives, `h-16 ${props.isKg ? 'bg-zinc-300' : `${lbPlateColor}`} ${littlePlateWidth}`)
+        return renderPlates(props.onepointtwofives, `h-16 ${props.isKg ? plateToColorMap['kg']['onepointtwofives'] : plateToColorMap['lbs']['onepointtwofives']} ${littlePlateWidth}`)
     }
     const renderCollar = () => {
         if (!props.collar) {
@@ -84,7 +89,10 @@ export default function BarbellDiagram(props: BarbellDiagramProps) {
         if (numPlates > 3) {
             return 'w-16'
         }
-        return 'w-20'
+        if (numPlates > 0) {
+            return 'w-24'
+        }
+        return 'w-28'
     }
     return (
         <div className="w-full flex flex-row justify-center">
@@ -96,6 +104,7 @@ export default function BarbellDiagram(props: BarbellDiagramProps) {
                     <div id="bar-end-container" className="flex flex-col justify-center w-1">
                         <div id="bar-end" className="h-7 bg-slate-400 w-1 border-solid border-black border-t-2 border-b-2 border-l-2"></div>
                     </div>
+                    {renderFiftyFives()}
                     {renderFortyFives()}
                     {renderThirtyFives()}
                     {renderTwentyFives()}

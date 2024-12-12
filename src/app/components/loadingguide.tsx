@@ -35,6 +35,7 @@ const getKgLoads = (weight: number, useCollars: boolean): BarbellDiagramProps =>
     }
 
     let loads: BarbellDiagramProps = {
+        fiftyfives: 0,
         fortyfives: 0,
         thirtyfives: 0,
         twentyfives: 0,
@@ -72,6 +73,7 @@ const getLbsLoads = (weight: number): BarbellDiagramProps => {
     weight -= 45
 
     let loads: BarbellDiagramProps = {
+        fiftyfives: 0,
         fortyfives: 0,
         thirtyfives: 0,
         twentyfives: 0,
@@ -113,29 +115,29 @@ function LoadingGuide(props: LoadingGuideProps) {
         paddingBottom: '16px',
         minWidth: '25px'
     }
-    const redstyles: SxProps = (iskg && load.twentyfives > 0) || (!iskg && load.fortyfives > 0) ? {
+    const redstyles: SxProps = (iskg && load.twentyfives > 0) || (!iskg && load.fives > 0) ? {
         ...baseStyles,
         backgroundColor: '#d30000',
         color: 'white',
         borderRadius: '0 0 0 4px'
     } : baseStyles;
-    const bluestyles: SxProps = (iskg && load.twenties > 0) || (!iskg && load.thirtyfives > 0) ? {
+    const bluestyles: SxProps = (iskg && load.twenties > 0) || (!iskg && load.fortyfives > 0) ? {
         ...baseStyles,
         backgroundColor: '#000de7',
         color: 'white',
     } : baseStyles;
-    const yellowstyles: SxProps = (iskg && load.fifteens > 0) || (!iskg && load.twentyfives > 0) ? {
+    const yellowstyles: SxProps = (iskg && load.fifteens > 0) || (!iskg && load.thirtyfives > 0) ? {
         ...baseStyles,
         backgroundColor: '#f9dd00',
         color: 'black'
     } : baseStyles;
-    const greenstyles: SxProps = load.tens > 0 ? {
+    const greenstyles: SxProps = (iskg && load.tens > 0) || (!iskg && load.twentyfives > 0) ? {
         ...baseStyles,
         backgroundColor: '#009300',
         opacity: '80%',
         color: 'white'
     } : baseStyles;
-    const whitestyles: SxProps = load.fives > 0 ? {
+    const whitestyles: SxProps = (iskg && load.fives > 0) || (!iskg && load.tens > 0) ? {
         ...baseStyles,
         backgroundColor: '#e6e0e0'
     } : baseStyles;
@@ -245,22 +247,22 @@ function LoadingGuide(props: LoadingGuideProps) {
                                 <Table sx={{ width: '100%' }} aria-label="simple table">
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell align="center" sx={redstyles} padding="none">{iskg ? '25s' : '45s'}</TableCell>
-                                            <TableCell align="center" sx={bluestyles} padding="none">{iskg ? '20s' : '35s'}</TableCell>
-                                            <TableCell align="center" sx={yellowstyles} padding="none">{iskg ? '15s' : '25s'}</TableCell>
-                                            <TableCell align="center" sx={greenstyles} padding="none">10s</TableCell>
-                                            <TableCell align="center" sx={whitestyles} padding="none">5s</TableCell>
+                                            <TableCell align="center" sx={iskg ? redstyles : bluestyles} padding="none">{iskg ? '25s' : '45s'}</TableCell>
+                                            <TableCell align="center" sx={iskg ? bluestyles : yellowstyles} padding="none">{iskg ? '20s' : '35s'}</TableCell>
+                                            <TableCell align="center" sx={iskg ? yellowstyles : greenstyles} padding="none">{iskg ? '15s' : '25s'}</TableCell>
+                                            <TableCell align="center" sx={iskg ? greenstyles : whitestyles} padding="none">10s</TableCell>
+                                            <TableCell align="center" sx={iskg ? whitestyles : redstyles} padding="none">5s</TableCell>
                                             <TableCell align="center" sx={blackstyles} padding="none">2.5s</TableCell>
                                             <TableCell align="center" sx={silverstyles} padding="none">1.25s</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
                                         <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                            <TableCell align="center" sx={redstyles} padding="none">{iskg ? load.twentyfives : load.fortyfives}</TableCell>
-                                            <TableCell align="center" sx={bluestyles} padding="none">{iskg ? load.twenties : load.thirtyfives}</TableCell>
-                                            <TableCell align="center" sx={yellowstyles} padding="none">{iskg ? load.fifteens : load.twentyfives}</TableCell>
-                                            <TableCell align="center" sx={greenstyles} padding="none">{load.tens}</TableCell>
-                                            <TableCell align="center" sx={whitestyles} padding="none">{load.fives}</TableCell>
+                                            <TableCell align="center" sx={iskg ? redstyles : bluestyles} padding="none">{iskg ? load.twentyfives : load.fortyfives}</TableCell>
+                                            <TableCell align="center" sx={iskg ? bluestyles : yellowstyles} padding="none">{iskg ? load.twenties : load.thirtyfives}</TableCell>
+                                            <TableCell align="center" sx={iskg ? yellowstyles : greenstyles} padding="none">{iskg ? load.fifteens : load.twentyfives}</TableCell>
+                                            <TableCell align="center" sx={iskg ? greenstyles : whitestyles} padding="none">{load.tens}</TableCell>
+                                            <TableCell align="center" sx={iskg ? whitestyles : redstyles} padding="none">{load.fives}</TableCell>
                                             <TableCell align="center" sx={blackstyles} padding="none">{load.twopointfives}</TableCell>
                                             <TableCell align="center" sx={silverstyles} padding="none">{load.onepointtwofives}</TableCell>
                                         </TableRow>
