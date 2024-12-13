@@ -33,7 +33,7 @@ export default function BarbellCalculator() {
             <LoadingGuide weight={weight} iskg={true} showKgToggle={true} forceStackUi={false} onerm={-1} />
         );
     }
-    const buttonClasses = "bg-blue-700 text-white font-bold py-2 px-4 rounded h-full"
+    const buttonClasses = `${inputWeight == undefined ? 'bg-blue-200' : 'bg-blue-700'} text-white font-bold py-2 px-4 rounded h-full`
 
     return (
         <div className="w-full flex flex-col items-center">

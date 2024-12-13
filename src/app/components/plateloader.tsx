@@ -54,9 +54,9 @@ export default function PlateLoader() {
                     <div className={"text-slate-500 w-4"}>{typeof plates[key] === 'number' && (plates[key] as number) > 0 ? `${plates[key]} ` : ''}</div>
                     <div className={'text-slate-900'}>{name}</div>
                 </div>
-                <ButtonGroup variant="contained" aria-label="45s">
-                    <Button className="bg-white" onClick={() => removePlate(key, val)}><div className="font-bold text-slate-500 text-xl">–</div></Button>
-                    <Button className="bg-white" onClick={() => addPlate(key, val)}><div className="font-bold text-slate-500 text-xl">+</div></Button>
+                <ButtonGroup variant="outlined" aria-label="45s">
+                    <Button onClick={() => removePlate(key, val)}><div className="font-bold text-slate-500 text-xl">–</div></Button>
+                    <Button onClick={() => addPlate(key, val)}><div className="font-bold text-slate-500 text-xl">+</div></Button>
                 </ButtonGroup>
             </div>);
     }
@@ -85,9 +85,9 @@ export default function PlateLoader() {
                     <div className={"text-slate-500 w-4 m-auto"}>{plates.collar ? '1' : ''}</div>
                     <div className={'text-slate-900 text-sm m-auto'}>Collar</div>
                 </div>
-                <ButtonGroup variant="contained" aria-label="45s">
-                    <Button className="bg-white" onClick={() => removeCollar()}><div className="font-bold text-slate-500 text-l m-auto">👎</div></Button>
-                    <Button className="bg-white" onClick={() => addCollar()}><div className="font-bold text-slate-500 text-l m-auto">👍</div></Button>
+                <ButtonGroup variant="outlined" sx={{ maxWidth: 86, height: 40 }}>
+                    <Button onClick={() => removeCollar()}><div className="font-bold text-slate-500 text-sm m-auto">👎</div></Button>
+                    <Button onClick={() => addCollar()}><div className="font-bold text-slate-500 text-sm m-auto">👍</div></Button>
                 </ButtonGroup>
             </div>);
     }
@@ -178,7 +178,7 @@ export default function PlateLoader() {
                     <CardContent>
                         <div className="flex flex-row justify-between pb-3">
                             {renderKgRadio()}
-                            <Button variant="contained" onClick={() => reset(plates.isKg)}><span className="text-slate-900">Reset</span></Button>
+                            <Button variant="outlined" onClick={() => reset(plates.isKg)}><span>Reset</span></Button>
                         </div>
                         {plates.isKg ? kgsButtons() : lbsButtons()}
                     </CardContent>
